@@ -209,10 +209,9 @@ Contributions make the open-source community a great place to learn and create. 
 
 ## 📄 License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+Distributed under the MIT License. See [LICENSE](https://github.com/pnkmaurya9307/LotusCart-Ecommerce-Platform/blob/main/LICENSE) for more information.
 
 ---
-
 ## 📬 Contact
 
 **Pankaj Maurya** — pnkmaurya9307@gmail.com
