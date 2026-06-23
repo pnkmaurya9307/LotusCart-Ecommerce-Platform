@@ -46,12 +46,11 @@ function PlaceOrder() {
       handler: async (response) => {
         console.log(response)
     const {data} = await axios.post(serverUrl + '/api/order/verifyrazorpay',response,{withCredentials:true})
-    if(data){
-        toast.success("Order Placed")
-        navigate("/order")
-        setCartItem({})
-
-    }
+   if(data && data.message === 'Payment Successful'){
+              toast.success("Order Placed")
+              navigate("/order")
+              setCartItem({})
+          }
       }}
     const rzp = new window.Razorpay(options)
     rzp.open()
