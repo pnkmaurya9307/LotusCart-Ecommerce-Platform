@@ -13,6 +13,11 @@ const userSchema = new mongoose.Schema({
     password:{
         type:String
     },
+    authProvider:{
+        type:String,
+        enum:["local","google"],
+        default:"local"
+    },
     cartData:{
         type:Object,
         default:{}
