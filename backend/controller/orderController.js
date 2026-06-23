@@ -2,12 +2,33 @@ import Order from "../model/orderModel.js";
 import User from "../model/userModel.js";
 import razorpay from 'razorpay'
 import dotenv from 'dotenv'
+import transporter from "../config/mailer.js";
 dotenv.config()
 const currency = 'inr'
 const razorpayInstance = new razorpay({
     key_id: process.env.RAZORPAY_KEY_ID,
     key_secret: process.env.RAZORPAY_KEY_SECRET
 })
+
+const sendOrderConfirmationEmail = async (toEmail, orderData) => {
+    const itemList = orderData.items
+        .map(i => `<li>${i.name} (Size: ${i.size}) x${i.quantity} — ₹${i.price}</li>`)
+        .join('');
+
+    await transporter.sendMail({
+        from: `"Your Store" <${process.env.EMAIL_USER}>`,
+        to: toEmail,
+        subject: "Order Confirmed 🎉",
+        html: `
+            <h2>Thank you for your order!</h2>
+            <p><strong>Payment Method:</strong> ${orderData.paymentMethod}</p>
+            <p><strong>Total Amount:</strong> ₹${orderData.amount}</p>
+            <h3>Items Ordered:</h3>
+            <ul>${itemList}</ul>
+            <p>We'll deliver to: ${orderData.address.street}, ${orderData.address.city}, ${orderData.address.state} - ${orderData.address.pinCode}</p>
+        `
+    });
+};
 
 // for User
 export const placeOrder = async (req,res) => {
@@ -27,6 +48,7 @@ export const placeOrder = async (req,res) => {
 
          const newOrder = new Order(orderData)
          await newOrder.save()
+         await sendOrderConfirmationEmail(address.email, orderData)
 
          await User.findByIdAndUpdate(userId,{cartData:{}})
 
@@ -84,6 +106,9 @@ export const verifyRazorpay = async (req,res) =>{
         const orderInfo = await razorpayInstance.orders.fetch(razorpay_order_id)
         if(orderInfo.status === 'paid'){
             await Order.findByIdAndUpdate(orderInfo.receipt,{payment:true});
+                const order = await Order.findById(orderInfo.receipt)  
+                
+    await sendOrderConfirmationEmail(order.address.email, order)
             await User.findByIdAndUpdate(userId , {cartData:{}})
             res.status(200).json({message:'Payment Successful'
             })
