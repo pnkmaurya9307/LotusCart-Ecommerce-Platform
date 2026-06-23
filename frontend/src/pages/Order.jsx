@@ -77,7 +77,7 @@ function Order() {
                       className='px-[10px] sm:px-[15px] py-[5px] sm:py-[7px] rounded-md bg-[#101919] text-[#f3f9fc] text-[12px] sm:text-[14px] md:text-[16px] cursor-pointer active:bg-slate-500'
                       onClick={loadOrderData}
                     >
-                      Track Order
+                      Refresh Status
                     </button>
                   </div>
 
