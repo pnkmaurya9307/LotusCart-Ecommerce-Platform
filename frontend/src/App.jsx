@@ -17,12 +17,16 @@ import { ToastContainer } from 'react-toastify';
 import NotFound from './pages/NotFound'
 import ScrollToTop from './component/ScrollToTop'
 function App() {
-let {userData} = useContext(userDataContext)
+let {userData, loading} = useContext(userDataContext)
 let location = useLocation()
   
-  return (
+ return (
     <>
     <ScrollToTop />
+    {loading ? (
+      <div className='w-[100vw] h-[100vh] bg-gradient-to-l from-[#141414] to-[#0c2025]'></div>
+    ) : (
+      <>
     <ToastContainer />
     {userData && <Nav/>}
       <Routes>
@@ -61,8 +65,10 @@ let location = useLocation()
          <Route path='/order' 
         element={userData ? <Order/> : <Navigate to="/login" state={{from: location.pathname}} /> }/>
 
-        <Route path='*' element={<NotFound/>}/>
+       <Route path='*' element={<NotFound/>}/>
       </Routes>
+      </>
+    )}
     </>
   )
 }
