@@ -15,12 +15,14 @@ import PlaceOrder from './pages/PlaceOrder'
 import Order from './pages/Order'
 import { ToastContainer } from 'react-toastify';
 import NotFound from './pages/NotFound'
+import ScrollToTop from './component/ScrollToTop'
 function App() {
 let {userData} = useContext(userDataContext)
 let location = useLocation()
   
   return (
     <>
+    <ScrollToTop />
     <ToastContainer />
     {userData && <Nav/>}
       <Routes>
