@@ -29,7 +29,7 @@ function Login() {
               setLoading(false)
             } catch (error) {
               console.log(error)
-              toast.error("AdminLogin Failed")
+              toast.error("Admin Login Failed")
               setLoading(false)
             }
             
