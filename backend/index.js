@@ -19,11 +19,7 @@ let app = express()
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-<<<<<<< HEAD
  origin:[process.env.FRONTEND_URL , process.env.ADMIN_URL],
-=======
- origin:["https://lotuscart-ecommerce-platform-frontend.onrender.com" , "https://lotuscart-ecommerce-platform-admin-il09.onrender.com"],
->>>>>>> 80cc84f0b3fb8f3e0776ba852b3ce3197445dfa0
  credentials:true
 }))
 
