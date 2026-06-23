@@ -99,17 +99,17 @@ function Collections() {
         <div className={`border-[2px] border-[#dedcdc] pl-5 py-3 mt-6 rounded-md bg-slate-600 ${showFilter ? "" : "hidden"} lg:block`}>
             <p className='text-[18px] text-[#f8fafa]'>CATEGORIES</p>
             <div className='w-full max-w-[230px] flex items-start justify-center gap-[10px] flex-col py-[5px]'>
-                <p className='flex items-center justify-center gap-[10px] text-[16px] font-light'> <input type="checkbox" value={'Men'} className='w-3' onChange={toggleCategory} /> Men</p>
-                 <p className='flex items-center justify-center gap-[10px] text-[16px] font-light'> <input type="checkbox" value={'Women'} className='w-3' onChange={toggleCategory} /> Women</p>
-                  <p className='flex items-center justify-center gap-[10px] text-[16px] font-light'> <input type="checkbox" value={'Kids'} onChange={toggleCategory} className='w-3' /> Kids</p>
+               <p className='flex items-center justify-center gap-[10px] text-[16px] font-light'> <input type="checkbox" value={'Clothing'} className='w-3' onChange={toggleCategory} /> Clothing</p>
+<p className='flex items-center justify-center gap-[10px] text-[16px] font-light'> <input type="checkbox" value={'Footwear'} className='w-3' onChange={toggleCategory} /> Footwear</p>
+<p className='flex items-center justify-center gap-[10px] text-[16px] font-light'> <input type="checkbox" value={'Accessories'} onChange={toggleCategory} className='w-3' /> Accessories</p>
             </div>
         </div>
         <div className={`border-[2px] border-[#dedcdc] pl-5 py-3 mt-6 rounded-md bg-slate-600 ${showFilter ? "" : "hidden"} lg:block`}>
             <p className='text-[18px] text-[#f8fafa]'>SUB-CATEGORIES</p>
             <div className='w-full max-w-[230px] flex items-start justify-center gap-[10px] flex-col py-[5px]'>
-                <p className='flex items-center justify-center gap-[10px] text-[16px] font-light'> <input type="checkbox" value={'TopWear'} className='w-3' onChange={toggleSubCategory} /> TopWear</p>
-                 <p className='flex items-center justify-center gap-[10px] text-[16px] font-light'> <input type="checkbox" value={'BottomWear'} className='w-3' onChange={toggleSubCategory} /> BottomWear</p>
-                  <p className='flex items-center justify-center gap-[10px] text-[16px] font-light'> <input type="checkbox" value={'WinterWear'} className='w-3' onChange={toggleSubCategory} /> WinterWear</p>
+                <p className='flex items-center justify-center gap-[10px] text-[16px] font-light'> <input type="checkbox" value={'Men'} className='w-3' onChange={toggleSubCategory} /> Men</p>
+<p className='flex items-center justify-center gap-[10px] text-[16px] font-light'> <input type="checkbox" value={'Women'} className='w-3' onChange={toggleSubCategory} /> Women</p>
+<p className='flex items-center justify-center gap-[10px] text-[16px] font-light'> <input type="checkbox" value={'Kids'} className='w-3' onChange={toggleSubCategory} /> Kids</p>
             </div>
         </div>
       </div>

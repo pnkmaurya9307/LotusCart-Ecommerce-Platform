@@ -90,8 +90,9 @@ function Login() {
     {!show && <IoEyeOutline className='w-[20px] h-[20px] cursor-pointer absolute right-[15px] top-[50%] translate-y-[-50%]' onClick={()=>setShow(prev => !prev)}/>}
     {show && <IoEye className='w-[20px] h-[20px] cursor-pointer absolute right-[15px] top-[50%] translate-y-[-50%]' onClick={()=>setShow(prev => !prev)}/>}
 </div>
-                  <button className='w-[100%] h-[50px] bg-[#6060f5] rounded-lg flex items-center justify-center mt-[20px] text-[17px] font-semibold'>{loading? <Loading/> : "Login"}</button>
-                  <p className='flex  gap-[10px]'>You haven't any account? <span className='text-[#5555f6cf] text-[17px] font-semibold cursor-pointer' onClick={()=>navigate("/signup")}>Create New Account</span></p>
+<button className='w-[100%] h-[50px] bg-[#6060f5] rounded-lg flex items-center justify-center mt-[20px] text-[17px] font-semibold cursor-pointer'>
+  {loading ? <Loading/> : "Login"}
+</button>                  <p className='flex  gap-[10px]'>You haven't any account? <span className='text-[#5555f6cf] text-[17px] font-semibold cursor-pointer' onClick={()=>navigate("/signup")}>Create New Account</span></p>
                   <p className='flex  gap-[10px]'>Are you an admin? <span className='text-[#5555f6cf] text-[17px] font-semibold cursor-pointer' onClick={()=>window.open(import.meta.env.VITE_ADMIN_URL, "_blank")}>Admin Login</span></p>            </div>
         </form>
     </div>

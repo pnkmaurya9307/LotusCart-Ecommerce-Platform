@@ -145,8 +145,7 @@ function Registration() {
                         <button
                             type="submit"
                             disabled={loading}
-                            className={`w-[100%] h-[50px] bg-[#6060f5] rounded-lg flex items-center justify-center mt-[20px] text-[17px] font-semibold ${loading ? 'opacity-60 cursor-not-allowed' : ''}`}
-                        >
+className={`w-[100%] h-[50px] bg-[#6060f5] rounded-lg flex items-center justify-center mt-[20px] text-[17px] font-semibold ${loading ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'}`}                        >
                             {loading ? <Loading /> : "Create Account"}
                         </button>
 

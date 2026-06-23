@@ -16,9 +16,9 @@ function Add() {
   const [name, setName] = useState("")
   const [description, setDescription] = useState("")
   const [detailedDescription, setDetailedDescription] = useState("")
-  const [category, setCategory] = useState("Men")
+const [category, setCategory] = useState("Clothing")
   const [price, setPrice] = useState("")
-  const [subCategory, setSubCategory] = useState("TopWear")
+const [subCategory, setSubCategory] = useState("Men")
   const [bestseller, setBestSeller] = useState(false)
   const [sizes,setSizes] = useState([])
   const [loading,setLoading] = useState(false)
@@ -67,8 +67,8 @@ function Add() {
       setImage4(false)
       setPrice("")
       setBestSeller(false)
-      setCategory("Men")
-      setSubCategory("TopWear")
+      setCategory("Clothing")
+setSubCategory("Men")
       }
 
       
@@ -165,18 +165,18 @@ function Add() {
         <div className='md:w-[30%] w-[100%] flex items-start sm:justify-center flex-col  gap-[10px]'>
           <p className='text-[20px] md:text-[25px]  font-semibold w-[100%]'>Product Category</p>
           <select name="" id="" className='bg-slate-600 w-[60%] px-[10px] py-[7px] rounded-lg hover:border-[#46d1f7] border-[2px] ' onChange={(e)=>setCategory(e.target.value)}>
-            <option value="Men">Men</option>
-            <option value="Women">Women</option>
-            <option value="Kids">Kids</option>
+<option value="Clothing">Clothing</option>
+<option value="Footwear">Footwear</option>
+<option value="Accessories">Accessories</option>
           </select>
         </div>
         <div className='md:w-[30%] w-[100%] flex items-start sm:justify-center flex-col  gap-[10px]'>
           <p className='text-[20px] md:text-[25px]  font-semibold w-[100%]'>Sub-Category</p>
           <select name="" id="" className='bg-slate-600 w-[60%] px-[10px] py-[7px] rounded-lg hover:border-[#46d1f7] border-[2px] ' onChange={(e)=>setSubCategory(e.target.value)
           }>
-            <option value="TopWear">TopWear</option>
-            <option value="BottomWear">BottomWear</option>
-            <option value="WinterWear">WinterWear</option>
+<option value="Men">Men</option>
+<option value="Women">Women</option>
+<option value="Kids">Kids</option>
           </select>
         </div>
        </div>
