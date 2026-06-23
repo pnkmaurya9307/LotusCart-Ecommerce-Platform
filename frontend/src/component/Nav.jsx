@@ -57,12 +57,12 @@ function Nav() {
             <h1 className='text-[18px] md:text-[25px] text-black font-sans truncate'>LotusCart</h1>
         </div>
        <div className='flex-1 hidden md:flex justify-center min-w-0 px-[5px]'>
-    <ul className='flex items-center justify-center gap-[6px] lg:gap-[19px] text-[white] flex-wrap'>
-        <li className='text-[11px] lg:text-[15px] hover:bg-slate-500 cursor-pointer bg-[#000000c9] py-[6px] lg:py-[10px] px-[8px] lg:px-[20px] rounded-2xl whitespace-nowrap' onClick={()=>navigate("/")}>HOME</li>
-        <li className='text-[11px] lg:text-[15px] hover:bg-slate-500 cursor-pointer bg-[#000000c9] py-[6px] lg:py-[10px] px-[8px] lg:px-[20px] rounded-2xl whitespace-nowrap' onClick={()=>navigate("/collection")}>COLLECTIONS</li>
-        <li className='text-[11px] lg:text-[15px] hover:bg-slate-500 cursor-pointer bg-[#000000c9] py-[6px] lg:py-[10px] px-[8px] lg:px-[20px] rounded-2xl whitespace-nowrap' onClick={()=>navigate("/about")}>ABOUT</li>
-        <li className='text-[11px] lg:text-[15px] hover:bg-slate-500 cursor-pointer bg-[#000000c9] py-[6px] lg:py-[10px] px-[8px] lg:px-[20px] rounded-2xl whitespace-nowrap' onClick={()=>navigate("/contact")}>CONTACT</li>
-    </ul>
+<ul className='flex items-center justify-center gap-[6px] lg:gap-[19px] text-[white] flex-wrap'>
+    <li className='text-[11px] lg:text-[15px] hover:bg-slate-500 cursor-pointer bg-[#000000c9] py-[6px] lg:py-[10px] px-[8px] lg:px-[20px] rounded-2xl whitespace-nowrap' onClick={()=>navigate("/")}>HOME</li>
+    <li className='text-[11px] lg:text-[15px] hover:bg-slate-500 cursor-pointer bg-[#000000c9] py-[6px] lg:py-[10px] px-[8px] lg:px-[20px] rounded-2xl whitespace-nowrap' onClick={()=>navigate("/collection")}>COLLECTIONS</li>
+    <li className='text-[11px] lg:text-[15px] hover:bg-slate-500 cursor-pointer bg-[#000000c9] py-[6px] lg:py-[10px] px-[8px] lg:px-[20px] rounded-2xl whitespace-nowrap' onClick={()=>navigate("/order")}>ORDERS</li>
+    <li className='text-[11px] lg:text-[15px] hover:bg-slate-500 cursor-pointer bg-[#000000c9] py-[6px] lg:py-[10px] px-[8px] lg:px-[20px] rounded-2xl whitespace-nowrap' onClick={()=>navigate("/cart")}>CART</li>
+</ul>
 </div>
         <div className='flex items-center justify-end gap-[12px] md:gap-[20px] flex-shrink-0'>
          {!showSearch && <IoSearchCircleOutline  className='w-[30px] h-[30px] md:w-[38px] md:h-[38px] text-[#000000]  cursor-pointer' onClick={()=>{setShowSearch(prev=>!prev);navigate("/collection")}}/>}
@@ -90,8 +90,7 @@ function Nav() {
             <input type="text" className='lg:w-[50%] w-[80%] h-[60%] bg-[#233533] rounded-[30px] px-[50px] placeholder:text-white text-[white] text-[18px]' placeholder='Search Here' onChange={(e)=>{setSearch(e.target.value)}} value={search} />
         </div>}
 
-        <div className='w-[100vw] h-[80px] md:h-[90px] flex items-center justify-between px-[10px] md:px-[20px] text-[10px] md:text-[12px]
-         fixed bottom-0 left-0 bg-[#191818]   md:hidden'>
+<div className='w-[100vw] h-[80px] md:h-[90px] flex items-center justify-between px-[30px] md:px-[20px] text-[10px] md:text-[12px]         fixed bottom-0 left-0 bg-[#191818]   md:hidden'>
 
 
 
