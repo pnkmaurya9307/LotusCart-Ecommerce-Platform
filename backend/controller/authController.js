@@ -3,7 +3,7 @@ import validator from "validator"
 import bcrypt from "bcryptjs"
 import { genToken, genToken1 } from "../config/token.js";
 
-
+const isProduction = process.env.NODE_ENV === "production";
 export const registration = async (req,res) => {
   try {
     const {name , email, password} = req.body;
@@ -22,10 +22,10 @@ export const registration = async (req,res) => {
     const user = await User.create({name,email,password:hashPassword})
     let token = await genToken(user._id)
     res.cookie("token",token,{
-        httpOnly:true,
-        secure:false,
-        sameSite: "Strict",
-        maxAge: 7 * 24 * 60 * 60 * 1000
+    httpOnly:true,
+    secure: isProduction,
+    sameSite: isProduction ? "none" : "strict",
+    maxAge: 7 * 24 * 60 * 60 * 1000
     })
     return res.status(201).json(user)
   } catch (error) {
@@ -50,9 +50,9 @@ export const login = async (req,res) => {
         let token = await genToken(user._id)
         res.cookie("token",token,{
         httpOnly:true,
-        secure:false,
-        sameSite: "Strict",
-        maxAge: 7 * 24 * 60 * 60 * 1000
+    secure: isProduction,
+    sameSite: isProduction ? "none" : "strict",
+    maxAge: 7 * 24 * 60 * 60 * 1000
     })
     return res.status(201).json(user)
 
@@ -88,8 +88,8 @@ export const googleLogin = async (req,res) => {
         let token = await genToken(user._id)
         res.cookie("token",token,{
         httpOnly:true,
-        secure:false,
-        sameSite: "Strict",
+        secure: isProduction,
+        sameSite: isProduction ? "none" : "strict",
         maxAge: 7 * 24 * 60 * 60 * 1000
     })
     return res.status(200).json(user)
@@ -109,8 +109,8 @@ export const adminLogin = async (req,res) => {
         let token = await genToken1(email)
         res.cookie("token",token,{
         httpOnly:true,
-        secure:false,
-        sameSite: "Strict",
+        secure: isProduction,
+        sameSite: isProduction ? "none" : "strict",
         maxAge: 1 * 24 * 60 * 60 * 1000
     })
     return res.status(200).json(token)
