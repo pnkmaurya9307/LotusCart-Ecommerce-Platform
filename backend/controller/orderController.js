@@ -11,21 +11,73 @@ const razorpayInstance = new razorpay({
 })
 
 const sendOrderConfirmationEmail = async (toEmail, orderData) => {
-    const itemList = orderData.items
-        .map(i => `<li>${i.name} (Size: ${i.size}) x${i.quantity} — ₹${i.price}</li>`)
+    const itemRows = orderData.items
+        .map(i => `
+            <tr>
+                <td style="padding:12px 0;border-bottom:1px solid #eee;color:#333;font-size:14px;">
+                    ${i.name} <span style="color:#888;">(Size: ${i.size})</span> &times; ${i.quantity}
+                </td>
+                <td style="padding:12px 0;border-bottom:1px solid #eee;color:#333;font-size:14px;text-align:right;">
+                    ₹${i.price * i.quantity}
+                </td>
+            </tr>
+        `)
         .join('');
 
     await transporter.sendMail({
-
-        from: `"LotusCart" <${process.env.EMAIL_FROM}>`,        to: toEmail,
-        subject: "Order Confirmed 🎉",
+        from: `"LotusCart" <${process.env.EMAIL_FROM}>`,
+        to: toEmail,
+        subject: "Your LotusCart order is confirmed 🎉",
         html: `
-            <h2>Thank you for your order!</h2>
-            <p><strong>Payment Method:</strong> ${orderData.paymentMethod}</p>
-            <p><strong>Total Amount:</strong> ₹${orderData.amount}</p>
-            <h3>Items Ordered:</h3>
-            <ul>${itemList}</ul>
-            <p>We'll deliver to: ${orderData.address.street}, ${orderData.address.city}, ${orderData.address.state} - ${orderData.address.pinCode}</p>
+        <div style="background-color:#f4f4f7;padding:40px 0;font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+          <div style="max-width:560px;margin:0 auto;background:#ffffff;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+
+            <div style="background:linear-gradient(135deg,#7c3aed,#a855f7);padding:28px 32px;text-align:center;">
+              <h1 style="margin:0;color:#fff;font-size:22px;letter-spacing:0.5px;">🛍️ LotusCart</h1>
+            </div>
+
+            <div style="padding:32px;">
+              <h2 style="margin:0 0 8px;color:#111;font-size:20px;">Thank you for your order!</h2>
+              <p style="margin:0 0 24px;color:#666;font-size:14px;">
+                We've received your order and we're getting it ready.
+              </p>
+
+              <table style="width:100%;border-collapse:collapse;margin-bottom:16px;">
+                <tr>
+                  <td style="padding:6px 0;color:#666;font-size:14px;">Payment Method</td>
+                  <td style="padding:6px 0;color:#111;font-size:14px;font-weight:600;text-align:right;">${orderData.paymentMethod}</td>
+                </tr>
+              </table>
+
+              <h3 style="margin:24px 0 8px;color:#111;font-size:15px;border-top:1px solid #eee;padding-top:20px;">Items Ordered</h3>
+              <table style="width:100%;border-collapse:collapse;">
+                ${itemRows}
+              </table>
+
+              <table style="width:100%;border-collapse:collapse;margin-top:16px;">
+                <tr>
+                  <td style="padding:12px 0;color:#111;font-size:16px;font-weight:700;">Total</td>
+                  <td style="padding:12px 0;color:#7c3aed;font-size:18px;font-weight:700;text-align:right;">₹${orderData.amount}</td>
+                </tr>
+              </table>
+
+              <div style="margin-top:24px;padding:16px;background:#f9f7ff;border-radius:8px;">
+                <p style="margin:0 0 4px;color:#888;font-size:12px;text-transform:uppercase;letter-spacing:0.5px;">Delivering to</p>
+                <p style="margin:0;color:#333;font-size:14px;line-height:1.5;">
+                  ${orderData.address.street}, ${orderData.address.city}, ${orderData.address.state} - ${orderData.address.pinCode}
+                </p>
+              </div>
+            </div>
+
+            <div style="background:#fafafa;padding:20px 32px;text-align:center;border-top:1px solid #eee;">
+              <p style="margin:0;color:#999;font-size:12px;">
+                Questions? Just reply to this email — we're happy to help.
+              </p>
+              <p style="margin:8px 0 0;color:#bbb;font-size:11px;">© ${new Date().getFullYear()} LotusCart. All rights reserved.</p>
+            </div>
+
+          </div>
+        </div>
         `
     });
 };
