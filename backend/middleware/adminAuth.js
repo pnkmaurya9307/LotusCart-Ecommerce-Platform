@@ -14,14 +14,12 @@ const adminAuth = async (req, res, next) => {
             return res.status(401).json({message:"Invalid Token. Please Login Again."})
         }
 
-        // ✅ FIX — look INSIDE the token and check if it actually belongs to admin
-        // Admin token contains {email}, user token contains {userId}
-        // So if email is missing, or doesn't match admin email — reject it
+    
         if(!verifyToken.email || verifyToken.email !== process.env.ADMIN_EMAIL){
             return res.status(403).json({message:"Access Denied. Admins Only."})
         }
 
-        req.adminEmail = verifyToken.email  // ✅ use email from token, not from env directly
+        req.adminEmail = verifyToken.email  
         next()
 
     } catch (error) {
