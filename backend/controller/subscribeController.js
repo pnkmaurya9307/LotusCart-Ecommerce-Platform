@@ -10,7 +10,7 @@ export const subscribe = async (req,res) => {
         }
 
         await transporter.sendMail({
-            from: process.env.EMAIL_USER,
+            from: process.env.EMAIL_FROM,
             to: process.env.EMAIL_USER,
             subject: "New Newsletter Subscription - LotusCart",
             text: `New subscriber email: ${email}`,

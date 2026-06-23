@@ -16,8 +16,8 @@ const sendOrderConfirmationEmail = async (toEmail, orderData) => {
         .join('');
 
     await transporter.sendMail({
-        from: `"Your Store" <${process.env.EMAIL_USER}>`,
-        to: toEmail,
+
+        from: `"Your Store" <${process.env.EMAIL_FROM}>`,        to: toEmail,
         subject: "Order Confirmed 🎉",
         html: `
             <h2>Thank you for your order!</h2>

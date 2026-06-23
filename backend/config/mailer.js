@@ -1,13 +1,16 @@
-import nodemailer from "nodemailer"
+// NEW — paste this in instead
+import { Resend } from "resend"
 import dotenv from "dotenv"
-dotenv.config() 
-const transporter = nodemailer.createTransport({
-    service:"gmail",
-    auth:{
-        user:process.env.EMAIL_USER,
-        pass:process.env.EMAIL_PASS
-    },
-      family: 4  
-})
+dotenv.config()
+
+const resend = new Resend(process.env.RESEND_API_KEY)
+
+const transporter = {
+    sendMail: async ({ from, to, subject, text, html }) => {
+        const { data, error } = await resend.emails.send({ from, to, subject, text, html })
+        if (error) throw error
+        return data
+    }
+}
 
 export default transporter
