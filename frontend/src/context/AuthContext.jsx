@@ -2,7 +2,11 @@ import React from 'react'
 import { createContext } from 'react'
 export const authDataContext= createContext()
 function AuthContext({children}) {
+<<<<<<< HEAD
     let serverUrl = import.meta.env.VITE_SERVER_URL
+=======
+    let serverUrl = "https://lotuscart-ecommerce-platform-backend-us5d.onrender.com"
+>>>>>>> 80cc84f0b3fb8f3e0776ba852b3ce3197445dfa0
 
     let value = {
        serverUrl

@@ -22,10 +22,17 @@ export const registration = async (req,res) => {
     const user = await User.create({name,email,password:hashPassword})
     let token = await genToken(user._id)
     res.cookie("token",token,{
+<<<<<<< HEAD
     httpOnly:true,
     secure: isProduction,
     sameSite: isProduction ? "none" : "strict",
     maxAge: 7 * 24 * 60 * 60 * 1000
+=======
+        httpOnly:true,
+        secure:true,
+        sameSite: "none",
+        maxAge: 7 * 24 * 60 * 60 * 1000
+>>>>>>> 80cc84f0b3fb8f3e0776ba852b3ce3197445dfa0
     })
     return res.status(201).json(user)
   } catch (error) {
@@ -50,9 +57,15 @@ export const login = async (req,res) => {
         let token = await genToken(user._id)
         res.cookie("token",token,{
         httpOnly:true,
+<<<<<<< HEAD
     secure: isProduction,
     sameSite: isProduction ? "none" : "strict",
     maxAge: 7 * 24 * 60 * 60 * 1000
+=======
+        secure:true,
+        sameSite: "none",
+        maxAge: 7 * 24 * 60 * 60 * 1000
+>>>>>>> 80cc84f0b3fb8f3e0776ba852b3ce3197445dfa0
     })
     return res.status(201).json(user)
 
@@ -88,8 +101,13 @@ export const googleLogin = async (req,res) => {
         let token = await genToken(user._id)
         res.cookie("token",token,{
         httpOnly:true,
+<<<<<<< HEAD
         secure: isProduction,
         sameSite: isProduction ? "none" : "strict",
+=======
+        secure:true,
+        sameSite: "none",
+>>>>>>> 80cc84f0b3fb8f3e0776ba852b3ce3197445dfa0
         maxAge: 7 * 24 * 60 * 60 * 1000
     })
     return res.status(200).json(user)
@@ -109,8 +127,13 @@ export const adminLogin = async (req,res) => {
         let token = await genToken1(email)
         res.cookie("token",token,{
         httpOnly:true,
+<<<<<<< HEAD
         secure: isProduction,
         sameSite: isProduction ? "none" : "strict",
+=======
+        secure:true,
+        sameSite: "none",
+>>>>>>> 80cc84f0b3fb8f3e0776ba852b3ce3197445dfa0
         maxAge: 1 * 24 * 60 * 60 * 1000
     })
     return res.status(200).json(token)
