@@ -85,9 +85,11 @@ function Login() {
             <div className='w-[90%] h-[400px] flex flex-col items-center justify-center gap-[15px]  relative'>
               
                  <input type="text" className='w-[100%] h-[50px] border-[2px] border-[#96969635] backdrop:blur-sm rounded-lg shadow-lg bg-transparent placeholder-[#ffffffc7] px-[20px] font-semibold' placeholder='Email' required  onChange={(e)=>setEmail(e.target.value)} value={email}/>
-                  <input type={show?"text":"password"} className='w-[100%] h-[50px] border-[2px] border-[#96969635] backdrop:blur-sm rounded-lg shadow-lg bg-transparent placeholder-[#ffffffc7] px-[20px] font-semibold' placeholder='Password' required onChange={(e)=>setPassword(e.target.value)} value={password}/>
-                  {!show && <IoEyeOutline className='w-[20px] h-[20px] cursor-pointer absolute right-[5%] bottom-[57%]' onClick={()=>setShow(prev => !prev)}/>}
-                  {show && <IoEye className='w-[20px] h-[20px] cursor-pointer absolute right-[5%] bottom-[57%]' onClick={()=>setShow(prev => !prev)}/>}
+                 <div className='w-[100%] relative'>
+    <input type={show?"text":"password"} className='w-[100%] h-[50px] border-[2px] border-[#96969635] backdrop:blur-sm rounded-lg shadow-lg bg-transparent placeholder-[#ffffffc7] px-[20px] font-semibold' placeholder='Password' required onChange={(e)=>setPassword(e.target.value)} value={password}/>
+    {!show && <IoEyeOutline className='w-[20px] h-[20px] cursor-pointer absolute right-[15px] top-[50%] translate-y-[-50%]' onClick={()=>setShow(prev => !prev)}/>}
+    {show && <IoEye className='w-[20px] h-[20px] cursor-pointer absolute right-[15px] top-[50%] translate-y-[-50%]' onClick={()=>setShow(prev => !prev)}/>}
+</div>
                   <button className='w-[100%] h-[50px] bg-[#6060f5] rounded-lg flex items-center justify-center mt-[20px] text-[17px] font-semibold'>{loading? <Loading/> : "Login"}</button>
                   <p className='flex  gap-[10px]'>You haven't any account? <span className='text-[#5555f6cf] text-[17px] font-semibold cursor-pointer' onClick={()=>navigate("/signup")}>Create New Account</span></p>
                   <p className='flex  gap-[10px]'>Are you an admin? <span className='text-[#5555f6cf] text-[17px] font-semibold cursor-pointer' onClick={()=>window.open(import.meta.env.VITE_ADMIN_URL, "_blank")}>Admin Login</span></p>            </div>
