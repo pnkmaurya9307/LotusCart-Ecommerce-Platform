@@ -1,6 +1,8 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import logo from "../assets/logo.png"
 function Footer() {
+    const navigate = useNavigate()
  return (
     <div className='w-[100%] mb-[77px] md:mb-[0px]'>
         <div className='w-[100%] bg-[#dbfcfcec] flex flex-col md:flex-row items-center justify-center gap-[15px] md:gap-[20px] md:px-[50px] px-[15px] py-[20px] md:py-[40px]'>
@@ -20,10 +22,9 @@ function Footer() {
 
                     </div>
                     <ul>
-                         <li className='text-[15px] text-[#1e2223] hidden md:block cursor-pointer'>Home</li>
-                        <li className='text-[15px] text-[#1e2223] cursor-pointer '>About us</li>
-                        <li className='text-[15px] text-[#1e2223] hidden md:block cursor-pointer'>Delivery</li>
-                        <li className='text-[15px] text-[#1e2223] cursor-pointer'>Privacy Policy</li>
+                         <li className='text-[15px] text-[#1e2223] cursor-pointer hover:underline' onClick={()=>{navigate("/"); window.scrollTo(0,0)}}>Home</li>
+                        <li className='text-[15px] text-[#1e2223] cursor-pointer hover:underline' onClick={()=>navigate("/about")}>About us</li>
+                        <li className='text-[15px] text-[#1e2223] cursor-pointer hover:underline' onClick={()=>navigate("/privacy-policy")}>Privacy Policy</li>
                     </ul>
                 </div>
 

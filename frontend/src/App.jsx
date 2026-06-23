@@ -16,6 +16,7 @@ import Order from './pages/Order'
 import { ToastContainer } from 'react-toastify';
 import NotFound from './pages/NotFound'
 import ScrollToTop from './component/ScrollToTop'
+import PrivacyPolicy from './pages/PrivacyPolicy'
 function App() {
 let {userData, loading} = useContext(userDataContext)
 let location = useLocation()
@@ -39,6 +40,8 @@ let location = useLocation()
         <Route path='/signup' 
         element={userData ? (<Navigate to={location.state?.from || "/"}/> ) 
         : (<Registration/>)}/>
+
+        <Route path='/privacy-policy' element={<PrivacyPolicy/>} />
 
         <Route path='/' 
         element={userData ? <Home/> : <Navigate to="/login" state={{from: location.pathname}} /> }/>
