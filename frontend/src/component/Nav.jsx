@@ -22,9 +22,13 @@ function Nav() {
     let location = useLocation()
     let profileRef = useRef(null)
 
-    useEffect(()=>{
-        setShowProfile(false)
-    },[location.pathname])
+useEffect(()=>{
+    setShowProfile(false)
+    if(location.pathname !== '/collection'){
+        setShowSearch(false)
+        setSearch('')
+    }
+},[location.pathname])
 
     useEffect(()=>{
         const handleClickOutside = (e) => {
