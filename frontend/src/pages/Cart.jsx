@@ -33,9 +33,16 @@ function Cart() {
         <Title text1={'YOUR'} text2={'CART'} />
       </div>
 
-      <div className='w-[100%] flex flex-col gap-[15px] mt-[20px]'>
+<div className='w-[100%] flex flex-col gap-[15px] mt-[20px]'>
         {
-         cartData.map((item,index)=>{
+         cartData.length === 0 ? (
+            <div className='w-full flex flex-col items-center justify-center mt-[80px] gap-[15px]'>
+              <p className='text-[50px]'>🛒</p>
+              <p className='text-[22px] md:text-[28px] text-[#aaf4e7] font-semibold'>Your Cart is Empty!</p>
+              <p className='text-[14px] md:text-[17px] text-[#ffffff80] text-center'>You have not added anything to your cart yet.</p>
+              <button className='mt-[10px] px-[30px] py-[10px] bg-[#51808048] border border-[#9ff9f9] text-white rounded-2xl text-[15px] hover:bg-slate-600 cursor-pointer' onClick={()=>navigate('/collection')}>Shop Now</button>
+            </div>
+         ) : cartData.map((item,index)=>{
              const productData = products.find((product) => product._id === item._id);
             if (!productData) return null
              return (

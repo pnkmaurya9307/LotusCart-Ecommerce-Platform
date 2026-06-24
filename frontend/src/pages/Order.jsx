@@ -40,8 +40,15 @@ function Order() {
       <div className='w-full text-center mt-[80px]'>
         <Title text1={'MY'} text2={'ORDER'} />
       </div>
-      <div className='w-full flex flex-col gap-[15px] md:gap-[20px] mt-[20px]'>
+<div className='w-full flex flex-col gap-[15px] md:gap-[20px] mt-[20px]'>
         {
+          orderData.length === 0 ? (
+            <div className='w-full flex flex-col items-center justify-center mt-[80px] gap-[15px]'>
+              <p className='text-[50px]'>📦</p>
+              <p className='text-[22px] md:text-[28px] text-[#aaf4e7] font-semibold'>No Orders Yet!</p>
+              <p className='text-[14px] md:text-[17px] text-[#ffffff80] text-center'>You have not placed any order yet.</p>
+            </div>
+          ) :
           orderData.map((item, index) => (
             <div key={index} className='w-full border-t border-b'>
               <div className='w-full flex flex-col sm:flex-row items-start gap-[15px] sm:gap-6 bg-[#51808048] py-[15px] px-[15px] md:px-[20px] rounded-2xl'>
