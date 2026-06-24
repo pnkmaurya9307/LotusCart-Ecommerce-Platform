@@ -7,7 +7,7 @@ function CartTotal() {
 
   return (
     <div className='w-full'>
-      <div className='text-xl py-[10px]'>
+      <div className='text-xl py-[10px] text-center'>
         <Title text1={'CART'} text2={'TOTALS'} />
       </div>
       <div className='flex flex-col gap-2 mt-2 text-sm p-[15px] sm:p-[20px] md:p-[30px] border-[2px] border-[#4d8890] rounded-lg'>
