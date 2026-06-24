@@ -47,7 +47,7 @@ function PlaceOrder() {
                 console.log(response)
                 const {data} = await axios.post(serverUrl + '/api/order/verifyrazorpay',response,{withCredentials:true})
                 if(data && data.message === 'Payment Successful'){
-                    toast.success("Order Placed")
+                    toast.success("Order Placed",{ position: "top-center" })
                     navigate("/order")
                     setCartItem({})
                 }
@@ -92,7 +92,7 @@ function PlaceOrder() {
                         setLoading(false)
                     } else {
                         console.log(result.data.message)
-                        toast.error("Order Placed Error")
+                        toast.error("Order Placed Error",{ position: "top-center" })
                         setLoading(false)
                     }
                     break;
