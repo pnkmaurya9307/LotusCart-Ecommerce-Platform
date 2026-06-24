@@ -71,6 +71,11 @@ useEffect(()=>{
         <div className='flex items-center justify-end gap-[12px] md:gap-[20px] flex-shrink-0'>
          {!showSearch && <IoSearchCircleOutline  className='w-[30px] h-[30px] md:w-[38px] md:h-[38px] text-[#000000]  cursor-pointer' onClick={()=>{setShowSearch(prev=>!prev);navigate("/collection")}}/>}
            {showSearch && <IoSearchCircleSharp  className='w-[30px] h-[30px] md:w-[38px] md:h-[38px] text-[#000000]  cursor-pointer' onClick={()=>setShowSearch(prev=>!prev)}/>}
+
+        <div className='relative'>
+         <MdOutlineShoppingCart className='w-[30px] h-[30px] text-[#000000]  cursor-pointer hidden md:block' onClick={()=>navigate("/cart")}/>
+{getCartCount() > 0 && <p className='absolute w-[18px] h-[18px] flex items-center  justify-center bg-black px-[5px] py-[2px] text-white  rounded-full text-[9px] top-[-10px] right-[-13px] hidden md:block'>{getCartCount()}</p>}        </div>
+
         <div ref={profileRef} className='relative'>
          {!userData && <FaCircleUser className='w-[24px] h-[24px] md:w-[29px] md:h-[29px] text-[#000000]  cursor-pointer' onClick={()=>setShowProfile(prev=>!prev)}/>}
          {userData && <div className='w-[26px] h-[26px] md:w-[30px] md:h-[30px] bg-[#080808] text-[white] rounded-full flex items-center justify-center cursor-pointer text-[13px] md:text-[16px]' onClick={()=>setShowProfile(prev=>!prev)}>{userData?.name.slice(0,1)}</div>}
@@ -87,8 +92,6 @@ useEffect(()=>{
 
         </div>}
         </div>
-         <MdOutlineShoppingCart className='w-[30px] h-[30px] text-[#000000]  cursor-pointer hidden md:block' onClick={()=>navigate("/cart")}/>
-         <p className='absolute w-[18px] h-[18px] items-center  justify-center bg-black px-[5px] py-[2px] text-white  rounded-full text-[9px] top-[10px] right-[23px] hidden md:block'>{getCartCount()}</p>
         </div>
        {showSearch && <div className='w-[100%]  h-[80px] bg-[#d8f6f9dd] absolute top-[100%] left-0 right-0 flex items-center justify-center '>
             <input type="text" className='lg:w-[50%] w-[80%] h-[60%] bg-[#233533] rounded-[30px] px-[50px] placeholder:text-white text-[white] text-[18px]' placeholder='Search Here' onChange={(e)=>{setSearch(e.target.value)}} value={search} />
@@ -111,8 +114,7 @@ useEffect(()=>{
   Orders
 </button>
                <button className='text-[white] flex items-center justify-center flex-col gap-[2px]' onClick={()=>navigate("/cart")}><MdOutlineShoppingCart className='w-[22px] h-[22px] md:w-[28px] md:h-[28px] text-[white] md:hidden'/> Cart</button>
-               <p className='absolute w-[18px] h-[18px] flex items-center justify-center bg-white px-[5px] py-[2px] text-black font-semibold  rounded-full text-[9px] top-[8px] right-[18px]'>{getCartCount()}</p>
-
+{getCartCount() > 0 && <p className='absolute w-[18px] h-[18px] flex items-center justify-center bg-white px-[5px] py-[2px] text-black font-semibold  rounded-full text-[9px] top-[8px] right-[18px]'>{getCartCount()}</p>}
         </div>
     
     </div>

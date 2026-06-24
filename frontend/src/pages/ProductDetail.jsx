@@ -87,8 +87,8 @@ function ProductDetail() {
           <div className='flex gap-2'>
             {
               productData.sizes.map((item, index) => (
-                <button key={index} className={`border py-2 px-4 bg-slate-300 rounded-md 
-                  ${item === size ? 'bg-black text-[#2f97f1] text-[20px]' : ''}`} onClick={() => setSize(item)}  >{item}</button>
+<button key={index} className={`border py-2 px-4 bg-slate-300 rounded-md cursor-pointer
+  ${item === size ? 'bg-black text-[#2f97f1] text-[20px]' : ''}`} onClick={() => setSize(item)}  >{item}</button>
               ))
             }
           </div>
