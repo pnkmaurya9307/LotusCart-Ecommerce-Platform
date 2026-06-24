@@ -28,8 +28,7 @@ function Cart() {
 
   }, [cartItem]);
   return (
-    <div className='w-[100vw] min-h-[100vh] p-[15px] md:p-[20px] overflow-x-hidden bg-gradient-to-l from-[#141414] to-[#0c2025] '>
-      <div className='w-[100%] text-center mt-[80px]'>
+<div className='w-[100vw] min-h-[100vh] p-[15px] md:p-[20px] pb-[120px] md:pb-[20px] overflow-x-hidden bg-gradient-to-l from-[#141414] to-[#0c2025] '>      <div className='w-[100%] text-center mt-[80px]'>
         <Title text1={'YOUR'} text2={'CART'} />
       </div>
 

@@ -47,7 +47,7 @@ function PlaceOrder() {
                 console.log(response)
                 const {data} = await axios.post(serverUrl + '/api/order/verifyrazorpay',response,{withCredentials:true})
                 if(data && data.message === 'Payment Successful'){
-                    toast.success("Order Placed",{ position: "top-center" })
+                    toast.success("Order Placed")
                     navigate("/order")
                     setCartItem({})
                 }
@@ -85,14 +85,14 @@ function PlaceOrder() {
                 case 'cod':
                     const result = await axios.post(serverUrl + "/api/order/placeorder", orderData, {withCredentials:true})
                     console.log(result.data)
-                    if(result.data){
-                        setCartItem({})
-                        toast.success("Order Placed")
-                        navigate("/order")
-                        setLoading(false)
-                    } else {
+                   if(result.data){
+    setCartItem({})
+    toast.success("Order Placed", { position: "bottom-center" })
+    navigate("/order")
+    setLoading(false)
+} else {
                         console.log(result.data.message)
-                        toast.error("Order Placed Error",{ position: "top-center" })
+                        toast.error("Order Placed Error")
                         setLoading(false)
                     }
                     break;
@@ -154,13 +154,12 @@ function PlaceOrder() {
                         <Title text1={'PAYMENT'} text2={'METHOD'}/>
                     </div>
                     <div className='w-[100%] flex flex-wrap items-start mt-[20px] lg:mt-[10px] justify-center gap-[20px] md:gap-[50px]'>
-                        <button onClick={()=>setMethod('razorpay')} className={`w-[150px] h-[50px] rounded-sm ${method === 'razorpay' ? 'border-[5px] border-blue-900 rounded-sm' : ''}`}>
-                            <img src={razorpay} className='w-[100%] h-[100%] object-fill rounded-sm' alt="" />
-                        </button>
-                        <button onClick={()=>setMethod('cod')} className={`w-[200px] h-[50px] bg-gradient-to-t from-[#95b3f8] to-[white] text-[14px] px-[20px] rounded-sm text-[#332f6f] font-bold ${method === 'cod' ? 'border-[5px] border-blue-900 rounded-sm' : ''}`}>
-                            CASH ON DELIVERY
-                        </button>
-                    </div>
+<button onClick={()=>setMethod('razorpay')} className={`w-[150px] h-[50px] rounded-sm box-border border-[3px] transition-transform duration-200 ${method === 'razorpay' ? 'border-[#3bcee8] scale-110' : 'border-transparent scale-100'}`}>
+    <img src={razorpay} className='w-[100%] h-[100%] object-fill rounded-sm' alt="" />
+</button>
+<button onClick={()=>setMethod('cod')} className={`w-[200px] h-[50px] bg-gradient-to-t from-[#95b3f8] to-[white] text-[14px] px-[20px] rounded-sm text-[#332f6f] font-bold box-border border-[3px] transition-transform duration-200 ${method === 'cod' ? 'border-[#3bcee8] scale-110' : 'border-transparent scale-100'}`}>
+    CASH ON DELIVERY
+</button>          </div>
                     <div className='flex justify-center w-full mt-[15px]'>
                         <button type='submit' form='deliveryForm' className='text-[15px] md:text-[18px] active:bg-slate-500 cursor-pointer bg-[#3bcee848] py-[10px] px-[35px] md:px-[50px] rounded-2xl text-white flex items-center justify-center gap-[20px] border-[1px] border-[#80808049]'>
                             {loading ? <Loading/> : "PLACE ORDER"}
