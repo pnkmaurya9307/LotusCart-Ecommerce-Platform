@@ -3,6 +3,8 @@ import Nav from '../component/Nav'
 import Sidebar from '../component/Sidebar'
 import { authDataContext } from '../context/AuthContext'
 import axios from 'axios'
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { toast } from 'react-toastify'
 
 function Lists() {
   let [list ,setList] = useState([])
@@ -20,22 +22,25 @@ function Lists() {
     
   }
 
-  const removeList = async (id) => {
+const removeList = async (id) => {
 
-    try {
-      let result = await axios.post(`${serverUrl}/api/product/remove/${id}`,{},{withCredentials:true})
+  try {
+    let result = await axios.post(`${serverUrl}/api/product/remove/${id}`,{},{withCredentials:true})
 
-      if(result.data){
-        fetchList()
-      }
-      else{
-        console.log("Failed to remove Product")
-      }
-    } catch (error) {
-      console.log(error)
+    if(result.data){
+      toast.success("Product Removed")
+      fetchList()
     }
-    
+    else{
+      console.log("Failed to remove Product")
+      toast.error("Failed to Remove Product")
+    }
+  } catch (error) {
+    console.log(error)
+    toast.error("Failed to Remove Product")
   }
+  
+}
 
   useEffect(()=>{
    fetchList()
@@ -62,10 +67,9 @@ function Lists() {
                   <div className='md:text-[17px] text-[15px] text-[#bef3da]'>₹{item.price}</div>
 
                   </div>
-                  <div className='w-[10%] h-[100%] bg-transparent flex items-center justify-center'>
-                    <span className='w-[35px] h-[30%] flex items-center justify-center rounded-md md:hover:bg-red-300 md:hover:text-black cursor-pointer' onClick={()=>removeList(item._id)}>X</span>
-                  </div>
-                 
+                <div className='w-[10%] h-[100%] bg-transparent flex items-center justify-center'>
+  <RiDeleteBin6Line className='w-[20px] h-[20px] md:hover:text-red-400 cursor-pointer' onClick={()=>removeList(item._id)}/>
+</div>
 
                 </div>
               ))

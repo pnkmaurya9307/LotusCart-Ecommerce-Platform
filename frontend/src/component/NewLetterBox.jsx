@@ -14,12 +14,12 @@ function NewLetterBox() {
         try {
             const result = await axios.post(serverUrl + "/api/subscribe", {email})
             if(result.data){
-                toast.success("Successfully requested for subscription")
+                toast.success("Successfully requested for subscription", { position: "bottom-center" })
                 setEmail("")
             }
         } catch (error) {
             console.log(error)
-            toast.error(error.response?.data?.message || "Subscription Failed")
+            toast.error(error.response?.data?.message || "Subscription Failed", { position: "bottom-center" })
         }
         setLoading(false)
     }

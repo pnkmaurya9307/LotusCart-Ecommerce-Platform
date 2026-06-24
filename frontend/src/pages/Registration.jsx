@@ -39,13 +39,13 @@ function Registration() {
 
             // FIX 6: await getCurrentUser() so userData is set before navigating
             await getCurrentUser()
-            toast.success("User Registration Successful")
+            toast.success("User Registration Successful", { position: "bottom-center" })
             navigate("/")
 
         } catch (error) {
             console.log(error)
             // FIX 4: show actual server error instead of generic message
-            toast.error(error.response?.data?.message || "User Registration Failed")
+            toast.error(error.response?.data?.message || "User Registration Failed", { position: "bottom-center" })
         } finally {
             // FIX 2: always reset loading in finally — runs on both success and error
             setLoading(false)
@@ -66,13 +66,13 @@ function Registration() {
 
             // FIX 6: await getCurrentUser() before navigating
             await getCurrentUser()
-            toast.success("User Registration Successful")
+            toast.success("User Registration Successful", { position: "bottom-center" })
             navigate("/")
 
         } catch (error) {
             console.log(error)
             // FIX 4: show actual server error
-            toast.error(error.response?.data?.message || "Google Registration Failed")
+            toast.error(error.response?.data?.message || "Google Registration Failed", { position: "bottom-center" })
         } finally {
             // FIX 5: always reset google loading
             setGoogleLoading(false)

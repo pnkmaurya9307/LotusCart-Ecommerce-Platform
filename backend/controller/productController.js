@@ -1,4 +1,4 @@
-import uploadOnCloudinary from "../config/cloudinary.js"
+import uploadOnCloudinary, { deleteFromCloudinary } from "../config/cloudinary.js"
 import Product from "../model/productModel.js"
 
 
@@ -56,6 +56,14 @@ export const removeProduct = async (req,res) => {
     try {
         let {id} = req.params;
         const product = await Product.findByIdAndDelete(id)
+
+        if(product){
+            await deleteFromCloudinary(product.image1)
+            await deleteFromCloudinary(product.image2)
+            await deleteFromCloudinary(product.image3)
+            await deleteFromCloudinary(product.image4)
+        }
+
          return res.status(200).json(product)
     } catch (error) {
         console.log("RemoveProduct error")

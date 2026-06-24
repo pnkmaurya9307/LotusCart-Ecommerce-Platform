@@ -40,7 +40,7 @@ function Login() {
         } catch (error) {
             console.log(error)
             setLoading(false)
-             toast.error(error.response?.data?.message || "User Login Failed")
+             toast.error(error.response?.data?.message || "User Login Failed", { position: "bottom-center" })
         }
     }
      const googlelogin = async () => {
@@ -54,11 +54,11 @@ function Login() {
                 console.log(result.data)
                 getCurrentUser()
             navigate("/")
-            toast.success("Login Successful")
+            toast.success("Login Successful", { position: "bottom-center" })
     
             } catch (error) {
                 console.log(error)
-                toast.error("Google Login Failed")
+                toast.error("Google Login Failed", { position: "bottom-center" })
             }
             
         }
