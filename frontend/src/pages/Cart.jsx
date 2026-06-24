@@ -68,9 +68,8 @@ function Cart() {
         }
       </div>
 
-      <div className='flex justify-center md:justify-start items-end my-[40px] md:my-20'>
-        <div className='w-full sm:w-[450px]'>
-            <CartTotal/>
+<div className='flex justify-center items-end my-[40px] md:my-20'>
+<div className='w-full sm:w-[450px] flex flex-col items-center text-center'>           <CartTotal/>
             <button className='text-[15px] md:text-[18px] hover:bg-slate-500 cursor-pointer bg-[#51808048] py-[10px] px-[30px] md:px-[50px] rounded-2xl text-white flex items-center justify-center gap-[20px]  border-[1px] border-[#80808049] mt-[20px]' onClick={()=>{
                 if (cartData.length > 0) {
       navigate("/placeorder");
