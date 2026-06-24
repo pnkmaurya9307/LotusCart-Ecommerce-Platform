@@ -84,7 +84,6 @@ const sendOrderConfirmationEmail = async (toEmail, orderData) => {
 
 // for User
 export const placeOrder = async (req,res) => {
-
      try {
          const {items , amount , address} = req.body;
          const userId = req.userId;
@@ -97,25 +96,24 @@ export const placeOrder = async (req,res) => {
             payment:false,
             date: Date.now()
          }
-
          const newOrder = new Order(orderData)
          await newOrder.save()
-         await sendOrderConfirmationEmail(address.email, orderData)
-
+         try {
+             await sendOrderConfirmationEmail(address.email, orderData)
+         } catch (emailError) {
+             console.log('Email failed:', emailError)
+         }
          await User.findByIdAndUpdate(userId,{cartData:{}})
-
          return res.status(201).json({message:'Order Place'})
     } catch (error) {
         console.log(error)
         res.status(500).json({message:'Order Place error'})
     }
-    
 }
 
 
 export const placeOrderRazorpay = async (req,res) => {
     try {
-        
          const {items , amount , address} = req.body;
          const userId = req.userId;
          const orderData = {
@@ -127,10 +125,8 @@ export const placeOrderRazorpay = async (req,res) => {
             payment:false,
             date: Date.now()
          }
-
          const newOrder = new Order(orderData)
          await newOrder.save()
-
          const options = {
             amount:amount * 100,
             currency: currency.toUpperCase(),
@@ -145,8 +141,7 @@ export const placeOrderRazorpay = async (req,res) => {
          })
     } catch (error) {
         console.log(error)
-        res.status(500).json({message:error.message
-            })
+        res.status(500).json({message:error.message})
     }
 }
 
@@ -158,31 +153,26 @@ export const verifyRazorpay = async (req,res) =>{
         const orderInfo = await razorpayInstance.orders.fetch(razorpay_order_id)
         if(orderInfo.status === 'paid'){
             await Order.findByIdAndUpdate(orderInfo.receipt,{payment:true});
-                const order = await Order.findById(orderInfo.receipt)  
-                
-    await sendOrderConfirmationEmail(order.address.email, order)
+            const order = await Order.findById(orderInfo.receipt)
+            try {
+                await sendOrderConfirmationEmail(order.address.email, order)
+            } catch (emailError) {
+                console.log('Email failed:', emailError)
+            }
             await User.findByIdAndUpdate(userId , {cartData:{}})
-            res.status(200).json({message:'Payment Successful'
-            })
-        }
-        else{
-            res.status(400).json({message:'Payment Failed'
-            })
+            res.status(200).json({message:'Payment Successful'})
+        } else {
+            res.status(400).json({message:'Payment Failed'})
         }
     } catch (error) {
         console.log(error)
-         res.status(500).json({message:error.message
-            })
+        res.status(500).json({message:error.message})
     }
 }
 
 
-
-
-
-
 export const userOrders = async (req,res) => {
-      try {
+    try {
         const userId = req.userId;
         const orders = await Order.find({userId})
         return res.status(200).json(orders)
@@ -190,17 +180,11 @@ export const userOrders = async (req,res) => {
         console.log(error)
         return res.status(500).json({message:"userOrders error"})
     }
-    
 }
 
 
+// for Admin
 
-
-//for Admin
-
-
-
-    
 export const allOrders = async (req,res) => {
     try {
         const orders = await Order.find({})
@@ -208,20 +192,15 @@ export const allOrders = async (req,res) => {
     } catch (error) {
         console.log(error)
         return res.status(500).json({message:"adminAllOrders error"})
-        
     }
-    
 }
-    
-export const updateStatus = async (req,res) => {
-    
-try {
-    const {orderId , status} = req.body
 
-    await Order.findByIdAndUpdate(orderId , { status })
-    return res.status(201).json({message:'Status Updated'})
-} catch (error) {
-     return res.status(500).json({message:error.message
-            })
-}
+export const updateStatus = async (req,res) => {
+    try {
+        const {orderId , status} = req.body
+        await Order.findByIdAndUpdate(orderId , { status })
+        return res.status(201).json({message:'Status Updated'})
+    } catch (error) {
+        return res.status(500).json({message:error.message})
+    }
 }
