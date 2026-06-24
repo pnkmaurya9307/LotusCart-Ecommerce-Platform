@@ -23,13 +23,13 @@ function Login() {
             try {
               const result = await axios.post(serverUrl + '/api/auth/adminlogin',{email , password} , {withCredentials:true})
               console.log(result.data)
-              toast.success("AdminLogin Successfully", { position: "bottom-center" })
+              toast.success("AdminLogin Successfully", { position:'top-center' })
               getAdmin()
               navigate("/")
               setLoading(false)
             } catch (error) {
               console.log(error)
-              toast.error("Admin Login Failed", { position: "bottom-center" })
+              toast.error("Admin Login Failed", { position:'top-center' })
               setLoading(false)
             }
             

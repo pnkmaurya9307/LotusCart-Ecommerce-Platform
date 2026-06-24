@@ -27,11 +27,11 @@ const [subCategory, setSubCategory] = useState("Men")
   const handleAddProduct = async (e) => {
     e.preventDefault()
     if(!image1 || !image2 || !image3 || !image4){
-        toast.error("Please upload all 4 images", { position: "bottom-center" })
+        toast.error("Please upload all 4 images", { position:'top-center' })
         return
     }
     if(sizes.length === 0){
-        toast.error("Please select at least one size", { position: "bottom-center" })
+        toast.error("Please select at least one size", { position:'top-center' })
         return
     }
     setLoading(true)
@@ -53,7 +53,7 @@ const [subCategory, setSubCategory] = useState("Men")
       let result = await axios.post(serverUrl + "/api/product/addproduct" , formData, {withCredentials:true} )
 
       console.log(result.data)
-      toast.success(" Product Added Successfully", { position: "bottom-center" })
+      toast.success(" Product Added Successfully", { position:'top-center' })
       setLoading(false)
 
       if(result.data){
@@ -75,7 +75,7 @@ setSubCategory("Men")
     } catch (error) {
        console.log(error)
        setLoading(false)
-       toast.error("Add Product Failed", { position: "bottom-center" })
+       toast.error("Add Product Failed", { position:'top-center' })
     }
 
     

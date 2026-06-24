@@ -47,7 +47,7 @@ function PlaceOrder() {
                 console.log(response)
                 const {data} = await axios.post(serverUrl + '/api/order/verifyrazorpay',response,{withCredentials:true})
                 if(data && data.message === 'Payment Successful'){
-                    toast.success("Order Placed", { position: "bottom-center" })
+                    toast.success("Order Placed", { position:'top-center' })
                     navigate("/order")
                     setCartItem({})
                 }
@@ -87,12 +87,12 @@ function PlaceOrder() {
                     console.log(result.data)
                    if(result.data){
     setCartItem({})
-    toast.success("Order Placed", { position: "bottom-center" })
+    toast.success("Order Placed", { position:'top-center' })
     navigate("/order")
     setLoading(false)
 } else {
                         console.log(result.data.message)
-                        toast.error("Order Placed Error", { position: "bottom-center" })
+                        toast.error("Order Placed Error", { position:'top-center' })
                         setLoading(false)
                     }
                     break;
@@ -111,7 +111,7 @@ function PlaceOrder() {
 
         } catch (error) {
             console.log(error)
-            toast.error("Something went wrong", { position: "bottom-center" })
+            toast.error("Something went wrong", { position:'top-center' })
             setLoading(false)  // 👈 this was missing — caused infinite loading
         }
     }

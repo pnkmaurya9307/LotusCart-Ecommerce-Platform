@@ -15,13 +15,13 @@ function Nav() {
         try {
             const result = await axios.get(serverUrl + "/api/auth/logout", {withCredentials:true})
             console.log(result.data)
-            toast.success("Log Out Successfully", { position: "bottom-center" })
+            toast.success("Log Out Successfully", { position:'top-center' })
             getAdmin()
             navigate("/login")
 
         } catch (error) {
             console.log(error)
-            toast.error("LogOut Failed", { position: "bottom-center" })
+            toast.error("LogOut Failed", { position:'top-center' })
         }
         
     }

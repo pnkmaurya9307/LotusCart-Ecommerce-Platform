@@ -56,7 +56,7 @@ function ShopContext({children}) {
       try {
       let result = await axios.post(serverUrl + "/api/cart/add" , {itemId,size} , {withCredentials: true})
       console.log(result.data)
-      toast.success("Product Added", { position: "bottom-center" })
+      toast.success("Product Added", { position:'top-center' })
       setLoading(false)
 
 
@@ -65,7 +65,7 @@ function ShopContext({children}) {
       catch (error) {
         console.log(error)
         setLoading(false)
-        toast.error("Add Cart Error", { position: "bottom-center" })
+        toast.error("Add Cart Error", { position:'top-center' })
        
       }
      
