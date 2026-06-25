@@ -1,5 +1,6 @@
 import React, { useContext, useState ,useEffect, useRef } from 'react'
 import logo from '../assets/logo.png'
+import { toast } from 'react-toastify';
 import { IoSearchCircleOutline } from "react-icons/io5";
 import { MdOutlineShoppingBag } from "react-icons/md";
 import { FaCircleUser } from "react-icons/fa6";
@@ -39,20 +40,19 @@ useEffect(()=>{
         document.addEventListener("mousedown", handleClickOutside)
         return () => document.removeEventListener("mousedown", handleClickOutside)
     },[])
-
-
-
-    const handleLogout = async () => {
-        try {
-            const result = await axios.get(serverUrl + "/api/auth/logout" , {withCredentials:true})
-            console.log(result.data)
-            setUserData(null)
-            
-        } catch (error) {
-            console.log(error)
-        }
+const handleLogout = async () => {
+    try {
+        const result = await axios.get(serverUrl + "/api/auth/logout" , {withCredentials:true})
+        console.log(result.data)
+        toast.success("Logout Successful", { position:'top-center' })
+        setUserData(null)
         
+    } catch (error) {
+        console.log(error)
+        toast.error(error.response?.data?.message || "Logout Failed", { position:'top-center' })
     }
+    
+}
   return (
     <div className='w-[100vw] h-[70px] bg-[#ecfafaec] z-10 fixed top-0 flex  items-center justify-between px-[15px] md:px-[30px] shadow-md shadow-black '>
 

@@ -23,13 +23,11 @@ function Registration() {
     let [loading, setLoading] = useState(false)
     let [googleLoading, setGoogleLoading] = useState(false)
 
-    // FIX 1: was 'userdata' (lowercase d) — wrong variable name, was always undefined
     let { userData, getCurrentUser } = useContext(userDataContext)
 
     let navigate = useNavigate()
 
     const handleSignup = async (e) => {
-        // FIX 3: e.preventDefault() must be the very first line
         e.preventDefault()
         setLoading(true)
         try {
@@ -37,23 +35,19 @@ function Registration() {
                 name, email, password
             }, { withCredentials: true })
 
-            // FIX 6: await getCurrentUser() so userData is set before navigating
             await getCurrentUser()
             toast.success("User Registration Successful", { position:'top-center' })
             navigate("/")
 
         } catch (error) {
             console.log(error)
-            // FIX 4: show actual server error instead of generic message
             toast.error(error.response?.data?.message || "User Registration Failed", { position:'top-center' })
         } finally {
-            // FIX 2: always reset loading in finally — runs on both success and error
             setLoading(false)
         }
     }
 
     const googleSignup = async () => {
-        // FIX 5: added googleLoading state to prevent double-clicks
         setGoogleLoading(true)
         try {
             const response = await signInWithPopup(auth, provider)
@@ -64,19 +58,20 @@ function Registration() {
             const result = await axios.post(serverUrl + "/api/auth/googlelogin", { name, email }, { withCredentials: true })
             console.log(result.data)
 
-            // FIX 6: await getCurrentUser() before navigating
             await getCurrentUser()
             toast.success("User Registration Successful", { position:'top-center' })
             navigate("/")
 
-        } catch (error) {
-            console.log(error)
-            // FIX 4: show actual server error
-            toast.error(error.response?.data?.message || "Google Registration Failed", { position:'top-center' })
-        } finally {
-            // FIX 5: always reset google loading
-            setGoogleLoading(false)
-        }
+} catch (error) {
+    console.log(error)
+    if (error.code === 'auth/popup-closed-by-user' || error.code === 'auth/cancelled-popup-request') {
+        toast.error("Google Sign-In Cancelled", { position:'top-center' })
+    } else {
+        toast.error(error.response?.data?.message || "Google Registration Failed", { position:'top-center' })
+    }
+} finally {
+    setGoogleLoading(false)
+}
     }
 
     return (

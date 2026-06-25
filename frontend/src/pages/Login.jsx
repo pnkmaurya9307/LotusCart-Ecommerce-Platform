@@ -35,7 +35,7 @@ function Login() {
             setLoading(false)
             getCurrentUser()
             navigate("/")
-            toast.success("User Login Successful")
+            toast.success("User Login Successful", { position:'top-center' })
             
         } catch (error) {
             console.log(error)
@@ -56,10 +56,14 @@ function Login() {
             navigate("/")
             toast.success("Login Successful", { position:'top-center' })
     
-            } catch (error) {
-                console.log(error)
-                toast.error("Google Login Failed", { position:'top-center' })
-            }
+} catch (error) {
+    console.log(error)
+    if (error.code === 'auth/popup-closed-by-user' || error.code === 'auth/cancelled-popup-request') {
+        toast.error("Google Sign-In Cancelled", { position:'top-center' })
+    } else {
+        toast.error("Google Login Failed", { position:'top-center' })
+    }
+}
             
         }
   return (
@@ -92,8 +96,9 @@ function Login() {
 </div>
 <button className='w-[100%] h-[50px] bg-[#6060f5] rounded-lg flex items-center justify-center mt-[20px] text-[17px] font-semibold cursor-pointer'>
   {loading ? <Loading/> : "Login"}
-</button>                  <p className='flex  gap-[10px]'>You haven't any account? <span className='text-[#5555f6cf] text-[17px] font-semibold cursor-pointer' onClick={()=>navigate("/signup")}>Create New Account</span></p>
-                  <p className='flex  gap-[10px]'>Are you an admin? <span className='text-[#5555f6cf] text-[17px] font-semibold cursor-pointer' onClick={()=>window.open(import.meta.env.VITE_ADMIN_URL, "_blank")}>Admin Login</span></p>            </div>
+</button>                 <p className='flex flex-wrap items-center justify-center text-center gap-[6px] px-[10px]'>You haven't any account? <span className='text-[#5555f6cf] text-[17px] font-semibold cursor-pointer whitespace-nowrap' onClick={()=>navigate("/signup")}>Create New Account</span></p>
+                 <p className='flex flex-wrap items-center justify-center text-center gap-[6px] px-[10px]'>Are you an admin? <span className='text-[#5555f6cf] text-[17px] font-semibold cursor-pointer whitespace-nowrap' onClick={()=>window.open(import.meta.env.VITE_ADMIN_URL, "_blank")}>Admin Login</span></p>
+                       </div>
         </form>
     </div>
     </div>
