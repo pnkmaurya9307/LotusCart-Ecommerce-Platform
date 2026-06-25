@@ -30,6 +30,7 @@ useEffect(()=>{
         setSearch('')
     }
 },[location.pathname])
+const isActive = (path) => location.pathname === path
 
     useEffect(()=>{
         const handleClickOutside = (e) => {
@@ -62,10 +63,10 @@ const handleLogout = async () => {
         </div>
        <div className='flex-1 hidden md:flex justify-center min-w-0 px-[5px]'>
 <ul className='flex items-center justify-center gap-[6px] lg:gap-[19px] text-[white] flex-wrap'>
-    <li className='text-[11px] lg:text-[15px] hover:bg-slate-500 cursor-pointer bg-[#000000c9] py-[6px] lg:py-[10px] px-[8px] lg:px-[20px] rounded-2xl whitespace-nowrap' onClick={()=>navigate("/")}>HOME</li>
-    <li className='text-[11px] lg:text-[15px] hover:bg-slate-500 cursor-pointer bg-[#000000c9] py-[6px] lg:py-[10px] px-[8px] lg:px-[20px] rounded-2xl whitespace-nowrap' onClick={()=>navigate("/collection")}>COLLECTIONS</li>
-    <li className='text-[11px] lg:text-[15px] hover:bg-slate-500 cursor-pointer bg-[#000000c9] py-[6px] lg:py-[10px] px-[8px] lg:px-[20px] rounded-2xl whitespace-nowrap' onClick={()=>navigate("/order")}>ORDERS</li>
-    <li className='text-[11px] lg:text-[15px] hover:bg-slate-500 cursor-pointer bg-[#000000c9] py-[6px] lg:py-[10px] px-[8px] lg:px-[20px] rounded-2xl whitespace-nowrap' onClick={()=>navigate("/cart")}>CART</li>
+    <li className={`text-[11px] lg:text-[15px] hover:bg-slate-500 cursor-pointer py-[6px] lg:py-[10px] px-[8px] lg:px-[20px] rounded-2xl whitespace-nowrap ${isActive('/') ? 'bg-[#5555f6cf] text-white font-semibold' : 'bg-[#000000c9]'}`} onClick={()=>navigate("/")}>HOME</li>
+    <li className={`text-[11px] lg:text-[15px] hover:bg-slate-500 cursor-pointer py-[6px] lg:py-[10px] px-[8px] lg:px-[20px] rounded-2xl whitespace-nowrap ${isActive('/collection') ? 'bg-[#5555f6cf] text-white font-semibold' : 'bg-[#000000c9]'}`} onClick={()=>navigate("/collection")}>COLLECTIONS</li>
+    <li className={`text-[11px] lg:text-[15px] hover:bg-slate-500 cursor-pointer py-[6px] lg:py-[10px] px-[8px] lg:px-[20px] rounded-2xl whitespace-nowrap ${isActive('/order') ? 'bg-[#5555f6cf] text-white font-semibold' : 'bg-[#000000c9]'}`} onClick={()=>navigate("/order")}>ORDERS</li>
+    <li className={`text-[11px] lg:text-[15px] hover:bg-slate-500 cursor-pointer py-[6px] lg:py-[10px] px-[8px] lg:px-[20px] rounded-2xl whitespace-nowrap ${isActive('/cart') ? 'bg-[#5555f6cf] text-white font-semibold' : 'bg-[#000000c9]'}`} onClick={()=>navigate("/cart")}>CART</li>
 </ul>
 </div>
         <div className='flex items-center justify-end gap-[12px] md:gap-[20px] flex-shrink-0'>
@@ -101,19 +102,19 @@ const handleLogout = async () => {
 
 
 
-            <button className='text-[white] flex items-center justify-center flex-col gap-[2px]' onClick={()=>navigate("/")}><IoMdHome className='w-[22px] h-[22px] md:w-[28px] md:h-[28px] text-[white] md:hidden'/> Home</button>
-             <button className='text-[white] flex items-center justify-center flex-col gap-[2px]' onClick={()=>navigate("collection")}><HiOutlineCollection className='w-[22px] h-[22px] md:w-[28px] md:h-[28px] text-[white] md:hidden'/> Collections</button>
+            <button className={`flex items-center justify-center flex-col gap-[2px] ${isActive('/') ? 'text-[#7a7aff]' : 'text-[white]'}`} onClick={()=>navigate("/")}><IoMdHome className={`w-[22px] h-[22px] md:w-[28px] md:h-[28px] md:hidden ${isActive('/') ? 'text-[#7a7aff]' : 'text-[white]'}`}/> Home</button>
+             <button className={`flex items-center justify-center flex-col gap-[2px] ${isActive('/collection') ? 'text-[#7a7aff]' : 'text-[white]'}`} onClick={()=>navigate("collection")}><HiOutlineCollection className={`w-[22px] h-[22px] md:w-[28px] md:h-[28px] md:hidden ${isActive('/collection') ? 'text-[#7a7aff]' : 'text-[white]'}`}/> Collections</button>
 <button
-  className='text-[white] flex items-center justify-center flex-col gap-[2px]'
+  className={`flex items-center justify-center flex-col gap-[2px] ${isActive('/order') ? 'text-[#7a7aff]' : 'text-[white]'}`}
   onClick={() => {
     navigate("/order");
     setShowProfile(false);
   }}
 >
-  <MdOutlineShoppingBag className='w-[22px] h-[22px] md:w-[28px] md:h-[28px] text-[white] md:hidden' />
+  <MdOutlineShoppingBag className={`w-[22px] h-[22px] md:w-[28px] md:h-[28px] md:hidden ${isActive('/order') ? 'text-[#7a7aff]' : 'text-[white]'}`} />
   Orders
 </button>
-               <button className='text-[white] flex items-center justify-center flex-col gap-[2px]' onClick={()=>navigate("/cart")}><MdOutlineShoppingCart className='w-[22px] h-[22px] md:w-[28px] md:h-[28px] text-[white] md:hidden'/> Cart</button>
+               <button className={`flex items-center justify-center flex-col gap-[2px] ${isActive('/cart') ? 'text-[#7a7aff]' : 'text-[white]'}`} onClick={()=>navigate("/cart")}><MdOutlineShoppingCart className={`w-[22px] h-[22px] md:w-[28px] md:h-[28px] md:hidden ${isActive('/cart') ? 'text-[#7a7aff]' : 'text-[white]'}`}/> Cart</button>
 {getCartCount() > 0 && <p className='absolute w-[18px] h-[18px] flex items-center justify-center bg-white px-[5px] py-[2px] text-black font-semibold  rounded-full text-[9px] top-[8px] right-[18px]'>{getCartCount()}</p>}
         </div>
     
