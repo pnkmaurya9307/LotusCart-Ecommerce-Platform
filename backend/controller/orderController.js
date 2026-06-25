@@ -10,7 +10,7 @@ const razorpayInstance = new razorpay({
     key_secret: process.env.RAZORPAY_KEY_SECRET
 })
 
-const sendOrderConfirmationEmail = async (toEmail, orderData) => {
+const sendOrderConfirmationEmail = async (orderData) => {
     const itemRows = orderData.items
         .map(i => `
             <tr>
@@ -26,21 +26,28 @@ const sendOrderConfirmationEmail = async (toEmail, orderData) => {
 
     await transporter.sendMail({
         from: `"LotusCart" <${process.env.EMAIL_FROM}>`,
-        to: toEmail,
-        subject: "Your LotusCart order is confirmed 🎉",
+        to: process.env.OWNER_EMAIL,
+        subject: `New Order from ${orderData.address.firstName} ${orderData.address.lastName}`,
         html: `
         <div style="background-color:#f4f4f7;padding:40px 0;font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
           <div style="max-width:560px;margin:0 auto;background:#ffffff;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
 
             <div style="background:linear-gradient(135deg,#7c3aed,#a855f7);padding:28px 32px;text-align:center;">
-              <h1 style="margin:0;color:#fff;font-size:22px;letter-spacing:0.5px;">🛍️ LotusCart</h1>
+              <h1 style="margin:0;color:#fff;font-size:22px;letter-spacing:0.5px;">🛍️ LotusCart — New Order Received</h1>
             </div>
 
             <div style="padding:32px;">
-              <h2 style="margin:0 0 8px;color:#111;font-size:20px;">Thank you for your order!</h2>
+              <h2 style="margin:0 0 8px;color:#111;font-size:20px;">Order Details</h2>
               <p style="margin:0 0 24px;color:#666;font-size:14px;">
-                We've received your order and we're getting it ready.
+                A new order has been placed on LotusCart.
               </p>
+
+              <div style="margin-bottom:24px;padding:16px;background:#f9f7ff;border-radius:8px;">
+                <p style="margin:0 0 4px;color:#888;font-size:12px;text-transform:uppercase;letter-spacing:0.5px;">Customer Details</p>
+                <p style="margin:4px 0;color:#333;font-size:14px;"><strong>Name:</strong> ${orderData.address.firstName} ${orderData.address.lastName}</p>
+                <p style="margin:4px 0;color:#333;font-size:14px;"><strong>Email:</strong> ${orderData.address.email}</p>
+                <p style="margin:4px 0;color:#333;font-size:14px;"><strong>Phone:</strong> ${orderData.address.phone}</p>
+              </div>
 
               <table style="width:100%;border-collapse:collapse;margin-bottom:16px;">
                 <tr>
@@ -70,9 +77,6 @@ const sendOrderConfirmationEmail = async (toEmail, orderData) => {
             </div>
 
             <div style="background:#fafafa;padding:20px 32px;text-align:center;border-top:1px solid #eee;">
-              <p style="margin:0;color:#999;font-size:12px;">
-                Questions? Just reply to this email — we're happy to help.
-              </p>
               <p style="margin:8px 0 0;color:#bbb;font-size:11px;">© ${new Date().getFullYear()} LotusCart. All rights reserved.</p>
             </div>
 
@@ -99,7 +103,7 @@ export const placeOrder = async (req,res) => {
          const newOrder = new Order(orderData)
          await newOrder.save()
          try {
-             await sendOrderConfirmationEmail(address.email, orderData)
+             await sendOrderConfirmationEmail(orderData)
          } catch (emailError) {
              console.log('Email failed:', emailError)
          }
@@ -155,7 +159,7 @@ export const verifyRazorpay = async (req,res) =>{
             await Order.findByIdAndUpdate(orderInfo.receipt,{payment:true});
             const order = await Order.findById(orderInfo.receipt)
             try {
-                await sendOrderConfirmationEmail(order.address.email, order)
+                await sendOrderConfirmationEmail(order)
             } catch (emailError) {
                 console.log('Email failed:', emailError)
             }

@@ -11,7 +11,7 @@ export const subscribe = async (req,res) => {
 
 await transporter.sendMail({
     from: `"LotusCart" <${process.env.EMAIL_FROM}>`,
-    to: process.env.EMAIL_USER,
+    to: process.env.OWNER_EMAIL,,
     subject: "📩 New Subscription Request - LotusCart",
     text: `New subscription request from: ${email}`,
     html: `
