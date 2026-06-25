@@ -1,4 +1,3 @@
-<div align="center">
 
 # 🛒 LotusCart
 
@@ -15,6 +14,67 @@
 </div>
 
 ---
+
+## 📸 Screenshots
+
+<table>
+<tr>
+<td align="center">
+<img src="https://github.com/user-attachments/assets/a09c69a4-99f1-4ff7-82a7-6b22ef26b448" width="220"/><br>
+<b>🏠 Home Page</b>
+</td>
+<td align="center">
+<img src="https://github.com/user-attachments/assets/9a66392b-8e11-44c3-a4f3-31a05bccbf37" width="220"/><br>
+<b>🛍️ Product Collections</b>
+</td>
+<td align="center">
+<img src="https://github.com/user-attachments/assets/1cb1ffba-aed2-416c-9695-231a181f41a2" width="220"/><br>
+<b>🛒 Shopping Cart</b>
+</td>
+<td align="center">
+<img src="https://github.com/user-attachments/assets/1ec2789d-c395-4245-84ec-1c6f7076bfbb" width="220"/><br>
+<b>💳 Checkout Page</b>
+</td>
+</tr>
+
+<tr>
+<td align="center">
+<img src="https://github.com/user-attachments/assets/2ce196b7-6920-472d-91f6-a00c7aa3f1e2" width="220"/><br>
+<b>💰 Razorpay Payment</b>
+</td>
+<td align="center">
+<img src="https://github.com/user-attachments/assets/109a87fc-20c0-4fa6-9590-8e90b9f4bb0b" width="220"/><br>
+<b>📦 My Orders</b>
+</td>
+<td align="center">
+<img src="https://github.com/user-attachments/assets/9f2ef549-80e1-40a4-874d-5d2b73c44a94" width="220"/><br>
+<b>📄 Order Details</b>
+</td>
+<td align="center">
+<img src="https://github.com/user-attachments/assets/7343dfa6-41fb-4fc1-a821-f4cd908e0423" width="220"/><br>
+<b>🔐 User Login</b>
+</td>
+</tr>
+
+<tr>
+<td align="center">
+<img src="https://github.com/user-attachments/assets/8a5faf2a-942a-4964-a432-4f90abe066b6" width="220"/><br>
+<b>👨‍💼 Admin Login</b>
+</td>
+<td align="center">
+<img src="https://github.com/user-attachments/assets/cb614c15-1d9f-43ac-80b8-4e1aa6bd8f30" width="220"/><br>
+<b>📋 Admin All Orders</b>
+</td>
+<td align="center">
+<img src="https://github.com/user-attachments/assets/20229895-1f18-437f-9447-d08f449b94de" width="220"/><br>
+<b>📦 Admin Listed Products</b>
+</td>
+<td align="center">
+<img src="https://github.com/user-attachments/assets/cce3c7f1-fd3e-4e58-9585-576526f62b09" width="220"/><br>
+<b>➕ Add Product</b>
+</td>
+</tr>
+</table>
 
 ## 📖 About The Project
 
