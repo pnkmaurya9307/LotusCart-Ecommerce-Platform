@@ -67,7 +67,6 @@ function Collections() {
         }
 
     }
-
     useEffect(()=>{
         sortProducts()
     },[sortType])
