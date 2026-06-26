@@ -6,7 +6,6 @@ import { shopDataContext } from '../context/ShopContext';
 import Card from '../component/Card';
 
 function Collections() {
-
     let [showFilter,setShowFilter] = useState(false)
     let {products,search,showSearch} = useContext(shopDataContext)
     let [filterProduct,setFilterProduct] = useState([])
